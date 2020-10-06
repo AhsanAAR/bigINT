@@ -4,6 +4,9 @@ add_library(
     src/bigint.cpp
     
     ## operators
+
+    src/operators/add_quantity_wise.cpp
+    src/operators/subtract_quantity_wise.cpp
     src/operators/assignment_operator.cpp
     src/operators/divide_equal.cpp
     src/operators/divide.cpp

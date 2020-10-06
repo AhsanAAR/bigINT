@@ -25,14 +25,19 @@
  *
  */
 
-#include <istream>
-#include <ostream>
+#include <bigint.hpp>
 
-#include "../bigint.hpp"
-
-namespace libbig
+int main()
 {
-    largeInt largeInt::operator+(largeInt b){
-        return addQuantityWise(b);
-    }
-} // namespace libbig
+    // tests std::string ctor
+    libbig::largeInt b("42");
+
+    libbig::largeInt c("20");
+
+    libbig::largeInt d(b+c);
+
+    std::cout << d;
+
+    std::getchar();
+    return 0;
+}

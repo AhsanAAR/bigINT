@@ -43,12 +43,17 @@ class largeInt
     bool sign;
     std::string number;
 
+    largeInt addQuantityWise(const largeInt&) const;
+    largeInt subtractQuantityWise(const largeInt&) const;  
+
   public:
     largeInt();
-
     explicit largeInt(int);
     explicit largeInt(long long int);
     explicit largeInt(std::string);
+
+    
+
 
     largeInt operator+(largeInt);
     largeInt operator+(int);

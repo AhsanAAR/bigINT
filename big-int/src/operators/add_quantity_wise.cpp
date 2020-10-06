@@ -28,11 +28,37 @@
 #include <istream>
 #include <ostream>
 
-#include "../bigint.hpp"
+#include <bigint.hpp>
 
-namespace libbig
-{
-    largeInt largeInt::operator+(largeInt b){
-        return addQuantityWise(b);
+namespace libbig{
+    largeInt largeInt::addQuantityWise(const largeInt& b) const{
+        largeInt result;
+        result.number.resize(std::max(number.size(),b.number.size()) + 1);
+        int indexA = number.size() - 1, indexB = b.number.size() - 1, indexResult = result.number.size() - 1;
+        int sum, carry = 0;
+        for(; indexA >= 0 && indexB >= 0; --indexA, --indexB, --indexResult){
+            sum = number[indexA] - '0' + b.number[indexB] - '0' + carry;
+            carry = sum / 10;
+            sum %= 10;
+            result.number[indexResult] = '0' + sum;
+        }
+
+        if(indexB >= 0){
+            for(; indexB >= 0; --indexB, --indexResult){
+            sum = b.number[indexB] - '0' + carry;
+            carry = sum / 10;
+            sum %= 10;
+            result.number[indexResult] = '0' + sum;
+        }
+        }else if(indexA >= 0){
+            for(; indexA >= 0; --indexA, --indexResult){
+            sum = number[indexA] - '0' + carry;
+            carry = sum / 10;
+            sum %= 10;
+            result.number[indexResult] = '0' + sum;
+            }
+        }
+        result.number[indexResult] = '0' + carry;
+        return result;
     }
-} // namespace libbig
+}

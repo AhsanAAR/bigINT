@@ -32,7 +32,5 @@
 
 namespace libbig
 {
-    largeInt largeInt::operator+(largeInt b){
-        return addQuantityWise(b);
-    }
+
 } // namespace libbig
